@@ -35,7 +35,7 @@ Board.prototype.Creategrid = function () {
   this.start = this.nodeArray[srid][scid];
 	this.end = this.nodeArray[erid][ecid];
   document.getElementById("main").innerHTML = string;
-  document.getElementById("" + srid + "-" + scid).style.background = "url('../images/start.svg')  no-repeat";
+  document.getElementById("" + srid + "-" + scid).style.background = "url('../images/start2.svg')  no-repeat";
 	document.getElementById("" + erid + "-" + ecid).style.background = "url('../images/end.svg')  no-repeat";
 }
 
@@ -91,7 +91,7 @@ Board.prototype.ActionListeners = function () {
 				}
 				else {
 					board.start = node;
-					document.getElementById(event.target.id).style.background = "url('../images/start.svg')  no-repeat";
+					document.getElementById(event.target.id).style.background = "url('../images/start2.svg')  no-repeat";
 				}
 			}
 			else if (nodeType === "end") {

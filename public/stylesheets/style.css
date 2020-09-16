@@ -96,13 +96,13 @@ input, select {
 /*-----------------------------------------------------------------------------*/
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Amatic SC";
 }
 
 .navbar {
   overflow: hidden;
   height: 56px;
-  background-color: #6784b3;
+  background-color: #dc3545;
 }
 
 .navbar h3  {
@@ -112,6 +112,7 @@ body {
   text-align: center;
   padding: 20px 16px;
   text-decoration: none;
+  font-weight: 100px;
 }
 
 .dropdown {
@@ -126,12 +127,13 @@ body {
   color: white;
   padding: 20px 16px;
   background-color: inherit;
-  font-family: inherit;
+  font-family: "Amatic SC";
+  color: #8de4af
   margin: 0;
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn, #visualize:hover, #clear:hover {
-  background-color: #a6cbf0;
+  background-color: #ffccb0;
 }
 
 .dropdown-content {
@@ -174,12 +176,12 @@ h3  {
 
 
 table  {
-  margin: 3px 6px ;  
+  margin: 3px 6px ;
 }
 
 
 td  {
-  border: 1px solid #D3D3D3;
+  border: 1px solid #7c7c7c;
   height: 25px;
   width: 25px;
 }

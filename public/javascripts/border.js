@@ -1,7 +1,7 @@
 import Per_node from "./nodes.js";
 
 function Board(row,col) {
-	this.row = row;
+	this.row = row;                          //Some default parms
 	this.col = col;
 	this.nodeArray = new Array(this.row);
 	this.start = null;
@@ -15,12 +15,13 @@ Board.prototype.initializeBoard = function () {
 }
 
 Board.prototype.Creategrid = function () {
-	this.srid = Math.floor(Math.random() * (this.row / 2 - 1));
-	this.scid = Math.floor(Math.random() * (this.col / 2 - 1));
-	this.erid = Math.floor((this.row + Math.random() * this.row) / 2);
-	this.ecid = Math.floor((this.col + Math.random() * this.col) / 2);
+	//Creating random start and end node
+	var srid = Math.floor(Math.random() * (this.row / 2 - 1));
+	var scid = Math.floor(Math.random() * (this.col / 2 - 1));
+	var erid = Math.floor((this.row + Math.random() * this.row) / 2);
+	var ecid = Math.floor((this.col + Math.random() * this.col) / 2);
 	var string = "<table id='table'>";
-	for (var i = 0; i < this.row; i++){
+	for (var i = 0; i < this.row; i++){														//Creating the whole table
 		this.nodeArray[i] = new Array(this.col);
 		string+= "<tr id= "+i+">";
 		for(var j = 0; j < this.col; j++){
@@ -31,17 +32,15 @@ Board.prototype.Creategrid = function () {
 		string+= "</tr>";
 	}
   string+= "</table>";
-  this.start = this.nodeArray[this.srid][this.scid];
-	this.end = this.nodeArray[this.erid][this.ecid];
+  this.start = this.nodeArray[srid][scid];
+	this.end = this.nodeArray[erid][ecid];
   document.getElementById("main").innerHTML = string;
-  document.getElementById("" + this.srid + "-" + this.scid).style.background = "url('../images/start.svg')  no-repeat";
-	//document.getElementById("" + this.srid + "-" + this.scid).style.backgroundColor = "red";
-	document.getElementById("" + this.erid + "-" + this.ecid).style.background = "url('../images/end.svg')  no-repeat";
-	//document.getElementById("" + this.erid + "-" + this.ecid).style.background = "blue"
+  document.getElementById("" + srid + "-" + scid).style.background = "url('../images/start.svg')  no-repeat";
+	document.getElementById("" + erid + "-" + ecid).style.background = "url('../images/end.svg')  no-repeat";
 }
 
 Board.prototype.ActionListeners = function () {
-	var board = this;
+	var board = this;															//Adding ActionListeners
 	var node,nodeType,e,rid,cid,click = false;
 	for(var i = 0; i < this.row; i++){
 		for(var j = 0; j < this.col; j++){
@@ -49,10 +48,10 @@ Board.prototype.ActionListeners = function () {
 			currNode.addEventListener("mousedown", mouseDown);
 			currNode.addEventListener("mouseover",mouseDown);
 			currNode.addEventListener("mouseup",mouseDown);
-			currNode.addEventListener("dragstart",dragStart);
 		}
 	}
 	function mouseDown(event) {
+		event.preventDefault();					//resolves default drag issue
 		e = event.target.id;
 		e = e.split("-");
 		rid = e[0];
@@ -73,10 +72,12 @@ Board.prototype.ActionListeners = function () {
 			if (node.wall) {
 				node.wall = false;
 				document.getElementById(event.target.id).style.backgroundColor = "";
+				//document.getElementById(event.target.id).style.border = "1px solid 	#cdcccb";
 			}
 			else {
 				node.wall = true;
-				document.getElementById(event.target.id).style.backgroundColor="black";
+				document.getElementById(event.target.id).style.backgroundColor="#7c7c7c";
+				//document.getElementById(event.target.id).style.border = "1px solid #323334";
 			}
 		}
 		else if (event.type == "mouseup") {
@@ -112,18 +113,16 @@ Board.prototype.ActionListeners = function () {
 				if (node.wall) {
 					node.wall = false;
 					document.getElementById(event.target.id).style.backgroundColor = "";
+					//document.getElementById(event.target.id).style.border = "1px solid 	#cdcccb";
 				}
 				else {
 					node.wall = true;
-					document.getElementById(event.target.id).style.backgroundColor="black";
+					document.getElementById(event.target.id).style.backgroundColor="#7c7c7c";
+					//document.getElementById(event.target.id).style.border = "1px solid #cdcccb";
 				}
 			}
 		}
 	}
-	function dragStart (event) {
-		event.preventDefault();
-	  //return false;
-	};
 }
 
 

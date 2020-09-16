@@ -1,7 +1,7 @@
 import Board from "./border.js";
 
 function initialize() {
-	var temp = document.getElementsByClassName("algorithm");
+	var temp = document.getElementsByClassName("algorithm");						//adds events listenrs on navbar and calls Board
 	let i;
 	for (i in temp) {
 		for (i = 0; i < Object.keys(temp).length; i++)

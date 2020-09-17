@@ -8,6 +8,7 @@ function Per_node(row, col) {
   this.visited = false;   //For future references
   this.start = false;
   this.end = false;
+  this.value = Infinity;
 //  this.last_node = 0;
 }
 

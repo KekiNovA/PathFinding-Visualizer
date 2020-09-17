@@ -1,4 +1,5 @@
 import Board from "./border.js";
+import Dijkstra from "./Dijkstra.js"
 
 function initialize() {
 	var temp = document.getElementsByClassName("algorithm");						//adds events listenrs on navbar and calls Board
@@ -15,17 +16,25 @@ function initialize() {
 	}
 
 	function vclicked(event) {
-		if(event.target.value === "Visualize") {
-			alert("Select Algo");
-		}
-		else {
 			var e = event.target.value;
 			e = e.split(" ");
-			alert(e[1] + " Selected");
+			switch (e[1]) {
+				case "Dijkstra":
+					Dijkstra(newBoard,newBoard.start , 0);
+					break;
+				case "A*":
+					alert("A*");
+				  break;
+				case "BFS":
+					alert("BFS");
+				  break;
+				case "DFS":
+					alert("DFS");
+				  break;
+				default:
+					alert("Select Algo First.");
 		}
 	}
-
-
 	function cleard(event) {
 		location.reload(true);
 	}

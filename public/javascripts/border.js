@@ -33,6 +33,7 @@ Board.prototype.Creategrid = function () {
 	}
   string+= "</table>";
   this.start = this.nodeArray[srid][scid];
+	this.start.value = 0;
 	this.end = this.nodeArray[erid][ecid];
   document.getElementById("main").innerHTML = string;
   document.getElementById("" + srid + "-" + scid).style.background = "url('../images/start2.svg')  no-repeat";
@@ -123,6 +124,9 @@ Board.prototype.ActionListeners = function () {
 			}
 		}
 	}
+}
+Board.prototype.getNode = function(row, col) {
+	return this.nodeArray[row][col];
 }
 
 

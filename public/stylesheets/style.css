@@ -113,7 +113,6 @@ body {
   padding: 20px 16px;
   text-decoration: none;
   font-weight: 100px;
-  color: #79cbb8;
 }
 
 .dropdown {
@@ -133,8 +132,8 @@ body {
   margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn, #visualize:hover, #clear:hover {
-  background-color: #ffccb0;
+.navbar a:hover,h3:hover, .dropdown:hover .dropbtn, #visualize:hover, #clear:hover {
+  color: #ffccb0;
 }
 
 .dropdown-content {
@@ -156,10 +155,13 @@ body {
 }
 
 .dropdown-content a:hover {
-  background-color: #ddd;
+  color: #ddd;
 }
 
 .dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown {
   display: block;
 }
 

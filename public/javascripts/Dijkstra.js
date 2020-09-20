@@ -34,7 +34,7 @@ async function Dijkstra (Board) {
     }
     catch(error)
     {
-        alert("Nikal Lavde")
+        alert("Done Visualizing")
 		    location.reload(true);
     }
     node.visited = true;

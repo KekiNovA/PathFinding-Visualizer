@@ -6,11 +6,20 @@ var edge_dist = 1;
 
 var pq = [];
 
+//function min_pop()  {
+//  let temp = [["", Infinity]];
+//  for (let i = 0; i < pq.length; i++)  {
+//    if (pq[i][1] < temp[1])  {
+//      temp = pq[i];
+//    }
+//  }
+//  return temp;
+//}
 
 function min_pop()  {
   let check = Infinity;
   let min, pos;
-//  console.log("this is inside", pq);
+  console.log("this is inside", pq[0].value);
   for (let i = 0; i < pq.length; i++)  {
 //    alert(pq[i].value);
     if (pq[i].value < check)  {
@@ -18,31 +27,30 @@ function min_pop()  {
       check = pq[pos].value;
     }
   }
-  min = pq.splice(pos, 1);
-//  console.log("removind", min, pos);
-  return min[0];
+  min = pq.splice(i, i);
+  console.log("removind", min);
+  return min;
 }
 
 
 async function Dijkstra(Board, value) {
 //  var tr = bo;
 //  var tc = 0;
-// source = Board.start;
+ // source = Board.start;
 
 function get_neighbour(node)  {
   var n_ar = [];
-//  console.log("this ?", node);
-//  console.log(node.row);
+  console.log("this ?", node);
   if (node.row + 1 < Board.row && Board.nodeArray[node.row + 1][node.col].visited != true)  {
     n_ar.push(Board.nodeArray[node.row + 1][node.col])
   }
   if (node.col + 1 < Board.col && Board.nodeArray[node.row][node.col + 1].visited != true)  {
     n_ar.push(Board.nodeArray[node.row][node.col + 1])
   }
-  if (node.row - 1 >= 0 && Board.nodeArray[node.row - 1][node.col].visited != true) {
+  if (node.row - 1 > 0 && Board.nodeArray[node.row - 1][node.col].visited != true) {
     n_ar.push(Board.nodeArray[node.row - 1][node.col])
   }
-  if (node.col - 1 >= 0 && Board.nodeArray[node.row][node.col - 1].visited != true)  {
+  if (node.row - 1 > 0 && Board.nodeArray[node.row][node.col - 1].visited != true)  {
     n_ar.push(Board.nodeArray[node.row][node.col - 1])
   }
   return n_ar;
@@ -51,48 +59,29 @@ function get_neighbour(node)  {
   var u, v;
   let destination = Board.end;
   let current_node = Board.start;
-  var cont = true;
   Board.start.value = 0;
   pq.push(current_node);
-  while (pq.length != 0 && cont)  {
+    console.log(pq);
+return;
+  while (pq.length != 0)  {
     u = min_pop();
- //   console.log("this after popping", u);
+    console.log("this after popping", u);
    let n_arr = get_neighbour(u);
-//    console.log("neighbour", n_arr);
+    console.log("neighbour", n_arr);
     for (v of n_arr)  {
-      await sleep(40);
+      await sleep(400);
+      document.getElementById(v.row + "-" + v.col).style.backgroundColor="blue"
       let alt = u.value + edge_dist;
-      u.visited = true;
-      if (alt < v.value && v != Board.end && v.wall == false)  {
-          document.getElementById(v.row + "-" + v.col).style.backgroundColor="blue"
-//        console.log(v.row, v.col, v.value, alt);
+      if (alt < v.value)  {
+          console.log(v.row, v.col, v.value, alt);
           v.value = alt;
           v.pred = u; // not sure
           pq.push(v);
-//          console.log("pushed", v);
+          console.log("pushed", v);
         }
-      else if (v == Board.end){
-        v.pred = u;
-        back_to_start(v);
-        cont = false;
-      }
+        u.visited = true;
       }
     }
-
- async function back_to_start(node)  {
-    var previous = [];
-    var temp = node;
-    do  {
-      previous.push(temp);
-      temp = temp.pred;
-    } while (temp != Board.start)  
-
-    while (previous.length != 0)  {
-      temp = previous.pop()
-      await sleep(40);
-      document.getElementById(temp.row + "-" + temp.col).style.backgroundColor="yellow"
-    }
-  }
 }
 
 export default Dijkstra;

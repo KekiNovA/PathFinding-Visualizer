@@ -7,6 +7,7 @@ function Per_node(row, col) {
   this.wall = false;       //Default is False; True on wall on ActionListeners
   this.visited = false;   //For future references
   this.value = Infinity;
+  this.prev;
 //  this.last_node = 0;
 }
 

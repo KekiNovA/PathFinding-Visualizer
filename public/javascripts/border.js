@@ -60,6 +60,7 @@ Board.prototype.ActionListeners = function () {
 		node = board.nodeArray[rid][cid];
 		if (event.type == "mousedown" ) {
 			if (node === board.start) {
+				node.value = Infinity;
 				nodeType = "start"
 				document.getElementById(event.target.id).style.background = "";
 				return;
@@ -92,6 +93,7 @@ Board.prototype.ActionListeners = function () {
 				}
 				else {
 					board.start = node;
+					node.value = 0;
 					document.getElementById(event.target.id).style.background = "url('../images/start2.svg')  no-repeat";
 				}
 			}

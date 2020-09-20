@@ -20,7 +20,7 @@ function initialize() {
 			e = e.split(" ");
 			switch (e[1]) {
 				case "Dijkstra":
-					Dijkstra(newBoard,newBoard.start , 0);
+					Dijkstra(newBoard);
 					break;
 				case "A*":
 					alert("A*");

@@ -1,17 +1,40 @@
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+async function Dijkstra (Board, start, value) {
+  //some things....
+  var visitedNodes = [];
+  var node;
+  visitedNodes.push(start);
+  for (node of visitedNodes){
+    //some end  conditions
+    //and some logic
+    node.visited = true;
 
-function Dijkstra (Board,node, value) {
-  if(node.end != true) {
-    document.getElementById("" + (node.row-1) + "-" + node.col).style.backgroundColor = "blue";
 
-    document.getElementById("" + (node.row+1) + "-" + node.col).style.backgroundColor = "blue";
+    await sleep(40)
+    getNeighbours(node);
+    document.getElementById(node.row + "-" + node.col).style.backgroundColor="blue"
+  }
 
-    document.getElementById("" + node.row + "-" + (node.col-1)).style.backgroundColor = "blue";
-
-    document.getElementById("" + node.row + "-" + (node.col+1)).style.backgroundColor = "blue";
-    Dijkstra (Board,Board.getNode(node.row-1,node.col), value+1);
-    Dijkstra (Board,Board.getNode(node.row+1,node.col), value+1);
-    Dijkstra (Board,Board.getNode(node.row,node.col-1), value+1);  
-    Dijkstra (Board,Board.getNode(node.row,node.col+1), value+1);
+  function getNeighbours(node) {
+    //some walls condition
+    if ( node.row+1 < Board.row ){
+      if (Board.nodeArray[node.row+1][node.col].visited != true)
+      visitedNodes.push(Board.nodeArray[node.row+1][node.col])
+    }
+    if (node.col+1 < Board.col){
+      if (Board.nodeArray[node.row][node.col+1].visited != true)
+    visitedNodes.push(Board.nodeArray[node.row][node.col+1])
+    }
+    if (node.row-1 >= 0){
+      if (Board.nodeArray[node.row-1][node.col].visited != true)
+    visitedNodes.push(Board.nodeArray[node.row-1][node.col])
+    }
+    if (node.col-1 >=0){
+      if (Board.nodeArray[node.row][node.col-1].visited != true)
+    visitedNodes.push(Board.nodeArray[node.row][node.col-1])
+    }
   }
 }
 export default Dijkstra;

@@ -10,6 +10,7 @@ function initialize() {
 	}
 	document.getElementById("visualize").addEventListener("click", vclicked);
 	document.getElementById("clear").addEventListener("click", cleard);
+
 	function algorithm(event) {
 		var e = event.target.id;
 		document.getElementById('visualize').value = "Visualize " + event.target.text;
@@ -37,13 +38,14 @@ function initialize() {
 		}
 	}
 	function cleard(event) {
+		newBoard.Visualizing = false;
 		newBoard.initializeBoard();
 	}
 }
 
-var navbar_height = 56;
+var navbar_height = 61;
 var WinHeight = window.innerHeight;
 var WinWidth = window.innerWidth;
-var newBoard = new Board(Math.floor((WinHeight - navbar_height - 6) / 25), Math.floor(WinWidth / 25));
+var newBoard = new Board(Math.floor((WinHeight - navbar_height -12) / 30), Math.floor(WinWidth / 30));
 newBoard.initializeBoard();
 initialize();

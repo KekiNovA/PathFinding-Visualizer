@@ -88,11 +88,10 @@ async function Dijkstra (Board) {
     }
     while (preds){
       temp = preds.pop();
-      await sleep(20);
+      await sleep(15);
       if(temp)
       document.getElementById(temp.row + "-" + temp.col).style.backgroundColor = "yellow";
     }
-    Board.Visualizing = false;
   }
 }
 

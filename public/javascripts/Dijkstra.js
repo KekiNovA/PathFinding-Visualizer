@@ -4,7 +4,6 @@ const sleep = (milliseconds) => {
 async function Dijkstra (Board) {
   //some things....
   var visitedNodes = [], temp,tempval,node;
-
   function minNode() {
     let nodes,t, value = Infinity;
     for (t of visitedNodes) {
@@ -22,40 +21,39 @@ async function Dijkstra (Board) {
   for (var i = 0; i < Board.row; i++) {
     for (var j = 0; j < Board.col; j++){
       visitedNodes.push(Board.nodeArray[i][j]);
-
     }
   }
 
   while (visitedNodes) {
-    //some end  conditions
     //and some logic
     try {
       node = minNode();
+      node.visited = true;
+      removeNode(node);
+      if (node.wall === true){
+        continue;
+      }
+      var n_arr = getNeighbours(node);
+      for (temp of n_arr) {
+        tempval = node.value + 1;
+        if (tempval < temp.value) {
+          temp.value = tempval;
+          temp.prev = node
+        }
+      }
+      await sleep(5)
+      if (node != Board.start && node != Board.end)
+        document.getElementById(node.row + "-" + node.col).style.backgroundColor="blue";
+      else if (node === Board.end) {
+        BackToStart();
+        break;
+      }
     }
     catch(error)
     {
-        alert("Done Visualizing")
-		    location.reload(true);
-    }
-    node.visited = true;
-    removeNode(node);
-    if (node.wall === true){
-      continue;
-    }
-    var n_arr = getNeighbours(node);
-    for (temp of n_arr) {
-      tempval = node.value + 1;
-      if (tempval < temp.value) {
-        temp.value = tempval;
-        temp.prev = node
-      }
-    }
-    await sleep(40)
-    if (node != Board.start && node != Board.end)
-      document.getElementById(node.row + "-" + node.col).style.backgroundColor="blue"
-    else if (node === Board.end) {
-      BackToStart();
-      break;
+      alert("Done Visualizing")
+      return;
+		  //location.reload(true);
     }
   }
 
@@ -90,10 +88,11 @@ async function Dijkstra (Board) {
     }
     while (preds){
       temp = preds.pop();
-      await sleep(30);
-      console.log(temp)
-      document.getElementById(temp.row + "-" + temp.col).style.backgroundColor = "yellow"
+      await sleep(20);
+      if(temp)
+      document.getElementById(temp.row + "-" + temp.col).style.backgroundColor = "yellow";
     }
+    Board.Visualizing = false;
   }
 }
 

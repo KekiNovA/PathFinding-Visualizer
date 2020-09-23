@@ -6,7 +6,7 @@ function Board(row,col) {
 	this.nodeArray = new Array(this.row);
 	this.start = null;
 	this.end = null;
-	this.moused = false;
+	this.Visualizing = false;
 }
 
 Board.prototype.initializeBoard = function () {
@@ -58,20 +58,21 @@ Board.prototype.ActionListeners = function () {
 		rid = e[0];
 	  cid = e[1];
 		node = board.nodeArray[rid][cid];
-		if (event.type == "mousedown" ) {
+		if (event.type == "mousedown" && board.Visualizing === false) {
 			if (node === board.start) {
 				node.value = Infinity;
-				nodeType = "start"
+				nodeType = "start";
 				document.getElementById(event.target.id).style.background = "";
 				return;
 			}
 			if (node === board.end) {
-				nodeType = "end"
+				nodeType = "end";
 				document.getElementById(event.target.id).style.background = "";
 				return;
 			}
 			click = true;
 			if (node.wall) {
+				nodeType = "clear";
 				node.wall = false;
 				document.getElementById(event.target.id).style.backgroundColor = "";
 				//document.getElementById(event.target.id).style.border = "1px solid 	#cdcccb";
@@ -85,6 +86,7 @@ Board.prototype.ActionListeners = function () {
 		else if (event.type == "mouseup") {
 			if (click === true){
 				click = false;
+				nodeType = "";
 			}
 			else if (nodeType === "start") {
 				if (board.end === node){
@@ -98,7 +100,7 @@ Board.prototype.ActionListeners = function () {
 				}
 			}
 			else if (nodeType === "end") {
-				if (board.start === node){
+				if (board.start === node) {
 					alert("not possible");
 					location.reload(true);
 				}
@@ -112,8 +114,7 @@ Board.prototype.ActionListeners = function () {
 			if (click === true) {
 				if ((node === board.start) || (node === board.end))
 					return;
-				click = true;
-				if (node.wall) {
+				if (nodeType === "clear") {
 					node.wall = false;
 					document.getElementById(event.target.id).style.backgroundColor = "";
 					//document.getElementById(event.target.id).style.border = "1px solid 	#cdcccb";
@@ -127,10 +128,6 @@ Board.prototype.ActionListeners = function () {
 		}
 	}
 }
-Board.prototype.getNode = function(row, col) {
-	return this.nodeArray[row][col];
-}
-
 
 
 

@@ -16,33 +16,34 @@ function initialize() {
 	}
 
 	function vclicked(event) {
-			var e = event.target.value;
-			e = e.split(" ");
-			switch (e[1]) {
-				case "Dijkstra":
-					Dijkstra(newBoard);
-					break;
-				case "A*":
-					alert("A*");
-				  break;
-				case "BFS":
-					alert("BFS");
-				  break;
-				case "DFS":
-					alert("DFS");
-				  break;
-				default:
-					alert("Select Algo First.");
+		newBoard.Visualizing = true;
+		var e = event.target.value;
+		e = e.split(" ");
+		switch (e[1]) {
+			case "Dijkstra":
+				Dijkstra(newBoard);
+				break;
+			case "A*":
+				alert("A*");
+			  break;
+			case "BFS":
+				alert("BFS");
+			  break;
+			case "DFS":
+				alert("DFS");
+			  break;
+			default:
+				alert("Select Algo First.");
 		}
 	}
 	function cleard(event) {
-		location.reload(true);
+		newBoard.initializeBoard();
 	}
 }
 
 var navbar_height = 56;
 var WinHeight = window.innerHeight;
 var WinWidth = window.innerWidth;
-let newBoard = new Board(Math.floor((WinHeight - navbar_height - 6) / 25), Math.floor(WinWidth / 25));
+var newBoard = new Board(Math.floor((WinHeight - navbar_height - 6) / 25), Math.floor(WinWidth / 25));
 newBoard.initializeBoard();
 initialize();

@@ -42,8 +42,10 @@ async function Dijkstra (Board) {
         }
       }
       await sleep(5)
-      if (node != Board.start && node != Board.end)
-        document.getElementById(node.row + "-" + node.col).style.backgroundColor="blue";
+      if (node != Board.start && node != Board.end){
+        document.getElementById(node.row + "-" + node.col).classList.add("visited");
+        //document.getElementById(node.row + "-" + node.col).style.backgroundColor="#82c7a5";
+      }
       else if (node === Board.end) {
         BackToStart();
         break;
@@ -89,8 +91,10 @@ async function Dijkstra (Board) {
     while (preds){
       temp = preds.pop();
       await sleep(15);
-      if(temp)
-      document.getElementById(temp.row + "-" + temp.col).style.backgroundColor = "yellow";
+      if(temp){
+        document.getElementById(temp.row + "-" + temp.col).classList.remove("visited");
+        document.getElementById(temp.row + "-" + temp.col).style.backgroundColor = "#ffff00";
+      }
     }
   }
 }

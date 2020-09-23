@@ -106,7 +106,7 @@ main  {
 
 .navbar {
   overflow: hidden;
-  background-color: #595F72;
+  background-color: #272d38;
 }
 
 
@@ -137,7 +137,7 @@ main  {
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn ,input:hover{
-  color: #C3D350;
+  color: #82c7a5;
 }
 
 .dropdown-content {
@@ -180,4 +180,56 @@ td  {
   border: 1px solid #7c7c7c;
   height: 30px;
   width: 30px;
+}
+
+.wall {
+  background: rgba(128, 128, 128, 0.90);
+  animation: wallAnimate 0.1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes wallAnimate {
+  0% {
+    transform: scale(0.3);
+    background-color: rgba(128, 128, 128, 0.1);
+    border-radius: 80%;
+  }
+
+  50% {
+    transform: scale(1.4);
+    border-radius: 50%;
+    background-color: rgba(128, 128, 128, 0.25)
+  }
+
+  100% {
+  transform: scale(1);
+  background-color: rgba(128, 128, 128, 0.75)
+  border-radius: 0%;
+  }
+}
+
+
+.visited {
+  background: rgba(18, 88, 220, 0.75);
+  animation: visitNode 0.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes visitNode {
+  0% {
+    transform: scale(0.3);
+    background-color: rgba(251, 134, 4, 1);
+    border-radius: 80%;
+  }
+
+  75% {
+    transform: scale(1.4);
+    border-radius: 50%;
+    background-color: rgba(134.5, 111, 112, 0.25);
+  }
+
+  100% {
+  transform: scale(1);
+  background-color: rgba(18, 88, 220, 0.75);
+  border-radius: 0%;
+  }
 }

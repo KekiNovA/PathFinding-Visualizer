@@ -74,13 +74,11 @@ Board.prototype.ActionListeners = function () {
 			if (node.wall) {
 				nodeType = "clear";
 				node.wall = false;
-				document.getElementById(event.target.id).style.backgroundColor = "";
-				//document.getElementById(event.target.id).style.border = "1px solid 	#cdcccb";
+				document.getElementById(event.target.id).classList.remove("wall");
 			}
 			else {
 				node.wall = true;
-				document.getElementById(event.target.id).style.backgroundColor="#7c7c7c";
-				//document.getElementById(event.target.id).style.border = "1px solid #323334";
+				document.getElementById(event.target.id).classList.add("wall");
 			}
 		}
 		else if (event.type == "mouseup") {
@@ -116,13 +114,11 @@ Board.prototype.ActionListeners = function () {
 					return;
 				if (nodeType === "clear") {
 					node.wall = false;
-					document.getElementById(event.target.id).style.backgroundColor = "";
-					//document.getElementById(event.target.id).style.border = "1px solid 	#cdcccb";
+					document.getElementById(event.target.id).classList.remove("wall");
 				}
 				else {
 					node.wall = true;
-					document.getElementById(event.target.id).style.backgroundColor="#7c7c7c";
-					//document.getElementById(event.target.id).style.border = "1px solid #cdcccb";
+					document.getElementById(event.target.id).classList.add("wall");
 				}
 			}
 		}

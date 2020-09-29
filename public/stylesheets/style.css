@@ -99,10 +99,10 @@ input, select {
 body {
   font-family: sans-serif;
 }
-
+/* 
 main  {
-  margin:;
-}
+  margin:0;
+} */
 
 .navbar {
   overflow: hidden;
@@ -204,7 +204,7 @@ td  {
 
   100% {
   transform: scale(1);
-  background-color: rgba(128, 128, 128, 0.75)
+  background-color: rgba(128, 128, 128, 0.75);
   border-radius: 0%;
   }
 }

@@ -92,6 +92,7 @@ async function Dijkstra (Board) {
       await sleep(15);
       if(temp) {
         document.getElementById(temp.row + "-" + temp.col).classList.remove("visited");
+        //document.getElementById(temp.row + "-" + temp.col).classList.add("path");
         document.getElementById(temp.row + "-" + temp.col).style.backgroundColor = "#ffff00";
       }
     }

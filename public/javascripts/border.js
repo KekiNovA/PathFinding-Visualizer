@@ -75,10 +75,13 @@ Board.prototype.ActionListeners = function () {
 				nodeType = "clear";
 				node.wall = false;
 				document.getElementById(event.target.id).classList.remove("wall");
+				return;
 			}
 			else {
 				node.wall = true;
 				document.getElementById(event.target.id).classList.add("wall");
+				document.getElementById(event.target.id).style.animationPlayState = "running";
+				return;
 			}
 		}
 		else if (event.type == "mouseup") {
@@ -115,10 +118,13 @@ Board.prototype.ActionListeners = function () {
 				if (nodeType === "clear") {
 					node.wall = false;
 					document.getElementById(event.target.id).classList.remove("wall");
+					return;
 				}
 				else {
 					node.wall = true;
 					document.getElementById(event.target.id).classList.add("wall");
+					document.getElementById(event.target.id).style.animationPlayState = "running";
+					return;
 				}
 			}
 		}

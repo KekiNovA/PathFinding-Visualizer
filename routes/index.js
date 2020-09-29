@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-
+var app = express();
 /* GET home page. */
+
 router.get('/', function(req, res, next) {
-  res.senFile("..\\public\\index.html")
+  res.sendFile("./index.html")
 });
 module.exports = router;

@@ -4,6 +4,6 @@ var app = express();
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
-  res.sendFile("./index.html")
+  res.sendFile("../public/index.html")
 });
 module.exports = router;

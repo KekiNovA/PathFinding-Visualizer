@@ -60,28 +60,27 @@ async function Dijkstra (Board) {
   }
 
   function getNeighbours(node) {
-    //some walls condition
     var n_arr = [];
-    if ( node.row+1 < Board.row ){
+    if ( node.row + 1 < Board.row ){
       if (Board.nodeArray[node.row+1][node.col].visited != true)
       n_arr.push(Board.nodeArray[node.row+1][node.col])
     }
-    if (node.col+1 < Board.col){
+    if (node.col + 1 < Board.col){
       if (Board.nodeArray[node.row][node.col+1].visited != true)
       n_arr.push(Board.nodeArray[node.row][node.col+1])
     }
-    if (node.row-1 >= 0){
+    if (node.row - 1 >= 0){
       if (Board.nodeArray[node.row-1][node.col].visited != true)
       n_arr.push(Board.nodeArray[node.row-1][node.col])
     }
-    if (node.col-1 >=0){
+    if (node.col - 1 >= 0){
       if (Board.nodeArray[node.row][node.col-1].visited != true)
       n_arr.push(Board.nodeArray[node.row][node.col-1])
     }
     return n_arr;
   }
 
-  async function BackToStart(){
+  async function BackToStart() {
     var preds = [];
     temp = Board.end;
     while (temp) {
@@ -91,7 +90,7 @@ async function Dijkstra (Board) {
     while (preds){
       temp = preds.pop();
       await sleep(15);
-      if(temp){
+      if(temp) {
         document.getElementById(temp.row + "-" + temp.col).classList.remove("visited");
         document.getElementById(temp.row + "-" + temp.col).style.backgroundColor = "#ffff00";
       }

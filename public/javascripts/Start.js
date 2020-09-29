@@ -1,5 +1,6 @@
 import Board from "./border.js";
-import Dijkstra from "./Dijkstra.js"
+import Dijkstra from "./Dijkstra.js";
+import A_star from "./A_star.js";
 
 function initialize() {
 	var temp = document.getElementsByClassName("algorithm");						//adds events listenrs on navbar and calls Board
@@ -25,7 +26,7 @@ function initialize() {
 				Dijkstra(newBoard);
 				break;
 			case "A*":
-				alert("A*");
+				A_star(newBoard);
 			  break;
 			case "BFS":
 				alert("BFS");

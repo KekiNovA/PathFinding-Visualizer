@@ -12,7 +12,7 @@ async function BFS (Board) {
     var n_arr = getNeighbours(node);
     for (temp of n_arr) {
        temp.prev = node;
-//       temp.visited = true;
+       temp.visited = true;
        toVisit.push(temp);
     }
     await sleep(5);

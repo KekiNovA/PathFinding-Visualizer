@@ -11,11 +11,9 @@ async function BFS (Board) {
     }
     var n_arr = getNeighbours(node);
     for (temp of n_arr) {
-      if (!temp.visited)  {
        temp.prev = node;
-       temp.visited = true;
+//       temp.visited = true;
        toVisit.push(temp);
-      }
     }
     await sleep(5);
     if (node != Board.start && node != Board.end){
@@ -65,7 +63,6 @@ async function BFS (Board) {
     }
  	}
 }
-
 
 
 export default BFS;

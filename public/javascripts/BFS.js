@@ -5,7 +5,6 @@ async function BFS (Board) {
   var toVisit = [Board.start], temp, node;
   while (toVisit) {
     node = toVisit.shift() 
-    node.visited = true;
     if (node.wall === true){
      continue;
     }
@@ -45,10 +44,11 @@ async function BFS (Board) {
     }
     return n_arr;
   }
+
   async function BackToStart() {
     var preds = [];
     temp = Board.end;
-    while (temp) {
+    while (temp != Board.start) {
       preds.push(temp)
       temp = temp.prev;
     }

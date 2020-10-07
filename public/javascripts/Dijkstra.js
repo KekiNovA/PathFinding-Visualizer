@@ -25,7 +25,6 @@ async function Dijkstra (Board) {
   }
 
   while (visitedNodes) {
-    //and some logic
     try {
       node = minNode();
       node.visited = true;
@@ -41,7 +40,7 @@ async function Dijkstra (Board) {
           temp.prev = node
         }
       }
-      await sleep(5)
+      await sleep(5);
       if (node != Board.start && node != Board.end){
         document.getElementById(node.row + "-" + node.col).classList.add("visited");
         //document.getElementById(node.row + "-" + node.col).style.backgroundColor="#82c7a5";

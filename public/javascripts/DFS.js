@@ -3,68 +3,71 @@ const sleep = (milliseconds) => {
 }
 
 async function DFS (Board) {
-  var visiting = [Board.start], temp, node;
-  getNeighbours(Board.start);
-  while (visiting) {
-    if (visiting.length >= 2) {
-     node = visiting[1];
-     if (node.wall) {
-       continue;
-     }
-     else if (!node.visited) {
-       if (node === Board.end) {
-         BackToStart();
-       }
-       node.visited = true;
-       await sleep(40);
-       document.getElementById(node.row + "-" + node.col).classList.add("visited");
-       getNeighbours(node);
-      }
+  var stack = [];
+
+  stack.push(Board.start);
+
+  while (stack.length > 0)  {
+
+    let v = stack.pop();
+
+    if (v === Board.end)  {
+      BackToStart(v);
+      return ;
     }
-    else
-    visiting.pop();
+
+    else if (!v.visited && !v.wall)  {
+
+      await sleep(5);
+
+      document.getElementById(v.row + "-" + v.col).classList.add("visited");
+
+      v.visited = true;
+
+      let neighbours = getNeighbours(v);
+
+      for (let i of neighbours)  {
+
+          i.prev = v;
+
+          stack.push(i);
+        
+      }
+
+    }
+
   }
-
-
-
-
-
 
 
   function getNeighbours(node) {
-    if (node.row - 1 >= 0){
-      if (Board.nodeArray[node.row-1][node.col].visited != true) {
-        Board.nodeArray[node.row-1][node.col].prev = node;
-        visiting.push(Board.nodeArray[node.row-1][node.col])
-      }
-    }
-    if (node.col + 1 < Board.col){
-      if (Board.nodeArray[node.row][node.col+1].visited != true) {
-        Board.nodeArray[node.row][node.col+1].prev = node;
-        visiting.push(Board.nodeArray[node.row][node.col+1])
-      }
+    var n_arr = [];
+    if (node.col - 1 >= 0){
+      if (Board.nodeArray[node.row][node.col-1].visited != true)
+      n_arr.push(Board.nodeArray[node.row][node.col-1])
     }
     if ( node.row + 1 < Board.row ){
-      if (Board.nodeArray[node.row+1][node.col].visited != true) {
-        Board.nodeArray[node.row+1][node.col].prev = node;
-        visiting.push(Board.nodeArray[node.row+1][node.col])
-      }
+      if (Board.nodeArray[node.row+1][node.col].visited != true)
+      n_arr.push(Board.nodeArray[node.row+1][node.col])
     }
-    if (node.col - 1 >= 0){
-      if (Board.nodeArray[node.row][node.col-1].visited != true) {
-        Board.nodeArray[node.row][node.col-1].prv = node;
-        visiting.push(Board.nodeArray[node.row][node.col-1])
-      }
+    if (node.col + 1 < Board.col){
+      if (Board.nodeArray[node.row][node.col+1].visited != true)
+      n_arr.push(Board.nodeArray[node.row][node.col+1])
     }
+    if (node.row - 1 >= 0){
+      if (Board.nodeArray[node.row-1][node.col].visited != true)
+      n_arr.push(Board.nodeArray[node.row-1][node.col])
+    }
+    return n_arr;
   }
-  async function BackToStart() {
+
+  async function BackToStart(end_node) {
     var preds = [];
-    temp = Board.end;
-    while (temp != Board.start) {
+    let temp = end_node;
+    while (temp) {
       preds.push(temp)
       temp = temp.prev;
     }
-    while (preds) {
+    while (preds){
       temp = preds.pop();
       await sleep(15);
       if(temp) {
@@ -73,11 +76,9 @@ async function DFS (Board) {
         document.getElementById(temp.row + "-" + temp.col).style.backgroundColor = "#ffff00";
       }
     }
- 	}
+  }
+
 }
-
-
-
 
 
 

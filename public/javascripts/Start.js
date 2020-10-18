@@ -2,6 +2,10 @@ import Board from "./border.js";
 import Dijkstra from "./Dijkstra.js";
 import A_star from "./A_star.js";
 import BFS from "./BFS.js";
+import DFS from "./DFS.js";
+
+
+
 function initialize() {
 	var temp = document.getElementsByClassName("algorithm");						//adds events listenrs on navbar and calls Board
 	let i;
@@ -32,7 +36,7 @@ function initialize() {
 				BFS(newBoard);
 			  break;
 			case "DFS":
-				alert("DFS");
+				DFS(newBoard);
 			  break;
 			default:
 				alert("Select Algo First.");
